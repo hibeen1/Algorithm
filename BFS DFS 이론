@@ -1,0 +1,93 @@
+
+DFS (깊이 우선 탐색)
+ - 그래프 탐색 기법 중의 하나
+ - 한 정점으로부터 모든 정점들을 한 번씩 방문하는데, 더 이상 갈 수 없을 때까지 우선적으로 탐색
+ - 자기 자신을 호출하는 재귀 알고리즘의 형태 혹은 STACK 사용
+ - 어떤 노드를 탐색했는 지 여부를 반드시 검사해야 함
+ - BFS보다 단순
+
+수도 코드
+    DFS(G, u)
+        u.visited = true
+        for each v ∈ G.Adj[u]
+            if v.visited == false
+                DFS(G,v)
+    
+    init() 
+        For each u ∈ G
+            u.visited = false
+        For each u ∈ G
+        DFS(G, u)
+
+
+def DFS(start_node):
+    # 1) stack에 첫 번 째 노드 넣으면서 시작
+    stack = [start_node, ]
+
+    while True:
+    # 2) stack이 비어있는지(탐색을 더 안 해도 되는지) 확인
+        if len(stack) == 0:
+            return None
+
+    # 3) stack에서 맨 위의 노드를 pop
+        node = stack.pop()
+    
+    # 4) 만약 node가 찾고자 하는 target이라면 탐색 중단
+        if node == TARGET:
+            return node
+        
+    # 5) node의 자식을 expand 해서 children에 저장
+        children = expand(node)
+
+    # 6) children을 stack에 쌓기
+        stack.extend(children)
+    
+    # 7) 탐색 순서대로 출력하고싶다? 그럼 node print
+        print(node)
+
+
+
+
+
+
+BFS (너비 우선 탐색)
+ - 그래프 탐색 기법 중의 하나
+ - 한 정점으로부터 모든 정점들을 한 번씩 방문하는데, 인접한 노드를 먼저 탐색
+ - 두 노드 사이의 최단 경로 혹은 임의의 경로를 찾고 싶을 때 사용
+ - QUEUE 사용
+ - 어떤 노드를 탐색했는 지 여부를 반드시 검사해야 함
+ - DFS보다 복잡
+
+수도 코드
+
+    create a queue Q 
+    mark v as visited and put v into Q 
+    while Q is non-empty 
+        remove the head u of Q 
+        mark and enqueue all (unvisited) neighbours of u
+
+
+def BFS(start_node):
+    # 1) queue에 첫 번 째 노드 넣으면서 시작
+    queue = [start_node, ]
+
+    while True:
+    # 2) queue가 비어있는지 확인
+        if len(queue) == 0:
+            return None
+        
+    # 3) queue에서 popleft
+        node = queue.popleft()
+    
+    # 4) 만약 node가 찾고자 하는 target이라면 탐색 중단
+        if node == TARGET:
+            return node
+    
+    # 5) node의 자식을 expend해서 children에 저장
+        children = expand(node)
+
+    # 6) children을 stack에 쌓기
+        queue.extend(children)
+        
+    # 7) 탐색 순서대로 출력하고싶다? 그럼 node print
+        print(node)
