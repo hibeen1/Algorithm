@@ -4,7 +4,6 @@ copy_graph = []
 for _ in range(n):
     graph.append(list(map(int, input())))
 
-
 temp = 0
 arr = []
 
@@ -21,8 +20,6 @@ def dfs(x, y):
         dfs(x, y+1)
         return 1
     return 0
-    
-    
 
 result = 0
 arr = []
